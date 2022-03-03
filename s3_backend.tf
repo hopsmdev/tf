@@ -15,9 +15,10 @@ provider "aws" {
 }
 
 
-resource "aws_s3_bucket" "mybucket" {
-  bucket = "twinkiestatebucket12233444444"
+#### S3 Bucket
 
+resource "aws_s3_bucket" "mybucket" {
+  bucket = "twinkiestatebucket12234"
 }
 
 resource "aws_s3_bucket_public_access_block" "example" {
@@ -34,5 +35,25 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "s3_encryption_con
     apply_server_side_encryption_by_default {
       sse_algorithm     = "AES256"
     }
+  }
+}
+
+resource "aws_s3_bucket_versioning" "versioning_example" {
+  bucket = aws_s3_bucket.mybucket.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
+#### DynamoDB
+
+resource "aws_dynamodb_table" "db" {
+  name             = "terraformstatelock"
+  hash_key         = "LockID"
+  billing_mode     = "PAY_PER_REQUEST"
+
+  attribute {
+    name = "LockID"
+    type = "S"
   }
 }
