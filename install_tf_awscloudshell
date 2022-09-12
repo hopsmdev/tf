@@ -1,0 +1,7 @@
+#! /bin/bash
+LATEST_RELEASE=$(curl https://api.github.com/repos/hashicorp/terraform/releases/latest | jq --raw-output '.tag_name' | cut -c 2-)
+echo $LATEST_RELEASE
+wget https://releases.hashicorp.com/terraform/${LATEST_RELEASE}/terraform_${LATEST_RELEASE}_linux_amd64.zip
+unzip -d ./bin/ terraform_${LATEST_RELEASE}_linux_amd64.zip
+rm terraform_${LATEST_RELEASE}_linux_amd64.zip
+terraform version
