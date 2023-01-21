@@ -1,3 +1,20 @@
+"""
+Lambda function to generate IAM User Access Key Id and Secret Access Key and store
+user credentials in AWS Secrets Manager.
+
+WARNING: A valid IAM User name has to be specified via IAM_USER_NAME environment variable
+
+How does it work?
+
+1) Create IAM User with user credentials - Access Key Id and Secret Access Key.
+2) Update lambda function environment variable `IAM_USER_NAME` with your IAM User name.
+3) Create new secret in AWS Secret Manager, configure automatic rotation and choose this lambda function
+to rotate your secret.
+
+https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html
+
+"""
+
 import boto3
 import logging
 import os
