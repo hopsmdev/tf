@@ -5,5 +5,6 @@ resource "aws_iam_user" "iam_user" {
 }
 
 resource "aws_iam_access_key" "iam_user_credentials" {
-  user = aws_iam_user.iam_user[0].name
+  count  = var.create_iam_user == true ? 1 : 0
+  user   = aws_iam_user.iam_user[0].name
 }
