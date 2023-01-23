@@ -4,5 +4,5 @@ resource "aws_iam_user" "iam_user" {
 }
 
 resource "aws_iam_access_key" "iam_user_credentials" {
-  user = aws_iam_user.iam_user[count.index].name
+  user = aws_iam_user.iam_user[0].name
 }
