@@ -12,7 +12,7 @@ variable "secret_name" {
 variable "create_iam_user" {
   type        = bool
   default     = false
-  description = "If set true, it will create IAM User with credentials"
+  description = "If set true, it will create IAM User with credentials. Disabled by default."
 }
 
 variable "rotate_after_days" {
@@ -24,5 +24,5 @@ variable "rotate_after_days" {
 variable "enable_rotation" {
   type        = bool
   default     = true
-  description = "If set true, it will enable AWS Secret Manager's secret rotation"
+  description = "If set true, it will enable AWS Secret Manager's secret rotation. Enabled by default."
 }
