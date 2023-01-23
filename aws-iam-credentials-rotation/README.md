@@ -15,6 +15,7 @@ Create new IAM User `MyUser` with credentials rotated every 7 days (rotation aut
 
 ```
 module "aws-iam-credentials-rotation" {
+  source            = "./aws-iam-credentials-rotation"
   iam_user_name     = "MyUser"
   create_iam_user   = true     # Default is False
   rotate_after_days = 7        # Default is 30 days
@@ -30,6 +31,7 @@ but lambda function to rotate credentials will not be executed automatically
 
 ```
 module "aws-iam-credentials-rotation" {
+  source            = "./aws-iam-credentials-rotation"
   iam_user_name     = "MyUser"
   create_iam_user   = true     # Default is False
   rotate_after_days = 7        # Default is 30 days
@@ -44,6 +46,7 @@ It stores IAM Credentials in Secrets Manager's `secret` secret (by default)
 
 ```
 module "aws-iam-credentials-rotation" {
+  source            = "./aws-iam-credentials-rotation"
   iam_user_name     = "MyUser"
 }
 ```
@@ -55,6 +58,7 @@ It stores IAM Credentials in Secrets Manager's `MySecret` secret
 
 ```
 module "aws-iam-credentials-rotation" {
+  source            = "./aws-iam-credentials-rotation"
   iam_user_name     = "MyUser"
   secret_name       = "MySecret"
 }
