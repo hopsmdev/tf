@@ -20,7 +20,13 @@ data "aws_iam_policy_document" "lambda_policy" {
   }
   statement {
     actions = [
-      "iam:*",
+      "iam:ListUsers",
+      "iam:GetAccountPasswordPolicy",
+      "iam:*AccessKey*",
+      "iam:ChangePassword",
+      "iam:GetUser",
+      "iam:*ServiceSpecificCredential*",
+      "iam:*SigningCertificate*"
     ]
     resources = [
       "*"

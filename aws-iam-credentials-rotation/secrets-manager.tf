@@ -3,11 +3,12 @@ resource "aws_secretsmanager_secret" "secretsmanager_secret" {
 }
 
 resource "aws_secretsmanager_secret_rotation" "secretsmanager_secret_rotation" {
+  count               = var.enable_rotation == true ? 1 : 0
   secret_id           = aws_secretsmanager_secret.secretsmanager_secret.id
   rotation_lambda_arn = aws_lambda_function.rotate_iam_credentials.arn
 
   rotation_rules {
-    automatically_after_days = 30
+    automatically_after_days = var.rotate_after_days
   }
 }
  
