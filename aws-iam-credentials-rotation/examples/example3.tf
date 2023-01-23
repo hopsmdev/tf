@@ -3,5 +3,6 @@
 # It stores IAM Credentials in Secrets Manager's `secret` secret (by default)
 
 module "aws-iam-credentials-rotation" {
+  source            = "./aws-iam-credentials-rotation"
   iam_user_name     = "MyUser"
 }
