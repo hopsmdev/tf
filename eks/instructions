@@ -6,4 +6,17 @@ curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/d
 sudo mv /tmp/eksctl /usr/local/bin
 eksctl version
 
-git clone https://github.com/hashicorp/learn-terraform-provision-eks-cluster
+aws eks update-kubeconfig --name <CLUSTER NAME>
+
+# Create EKS cluster
+# https://developer.hashicorp.com/vault/tutorials/kubernetes/kubernetes-amazon-eks
+
+aws ec2 create-key-pair --key-name learn-vault
+eksctl create cluster \
+    --name learn-vault \
+    --nodes 3 \
+    --with-oidc \
+    --ssh-access \
+    --ssh-public-key learn-vault \
+    --managed
+
